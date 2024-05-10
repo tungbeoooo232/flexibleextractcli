@@ -1,14 +1,12 @@
-function rob(nums) {
-  if (nums.length === 1) return nums[0];
-  const robRange = (start, end) => {
-    let prevMax = 0;
-    let currMax = 0;
-    for (let i = start; i <= end; i++) {
-      const temp = currMax;
-      currMax = Math.max(currMax, prevMax + nums[i]);
-      prevMax = temp;
+const gnomeSort = (arr) => {
+  let index = 0;
+  while (index < arr.length) {
+    if (index === 0 || arr[index] >= arr[index - 1]) {
+      index++;
+    } else {
+      [arr[index], arr[index - 1]] = [arr[index - 1], arr[index]];
+      index--;
     }
-    return currMax;
-  };
-  return Math.max(robRange(0, nums.length - 2), robRange(1, nums.length - 1));
-}
+  }
+  return arr;
+};
