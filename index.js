@@ -1,22 +1,13 @@
-function minStack() {
-  this.stack = [];
-  this.minStack = [];
+function searchMatrix(matrix, target) {
+  if (matrix.length === 0 || matrix[0].length === 0) return false;
+  const rows = matrix.length;
+  const cols = matrix[0].length;
+  let row = 0;
+  let col = cols - 1;
+  while (row < rows && col >= 0) {
+    if (matrix[row][col] === target) return true;
+    else if (matrix[row][col] < target) row++;
+    else col--;
+  }
+  return false;
 }
-minStack.prototype.push = function (x) {
-  this.stack.push(x);
-  if (
-    this.minStack.length === 0 ||
-    x <= this.minStack[this.minStack.length - 1]
-  )
-    this.minStack.push(x);
-};
-minStack.prototype.pop = function () {
-  if (this.stack.pop() === this.minStack[this.minStack.length - 1])
-    this.minStack.pop();
-};
-minStack.prototype.top = function () {
-  return this.stack[this.stack.length - 1];
-};
-minStack.prototype.getMin = function () {
-  return this.minStack[this.minStack.length - 1];
-};
